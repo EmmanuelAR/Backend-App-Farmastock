@@ -1,6 +1,7 @@
 package com.globales.farmastock
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.stereotype.Service
 
 
@@ -314,6 +315,7 @@ class AbstractUserService(
      */
     override fun create(userInput: UserInput): UserResult? {
         val user:User = userMapper.userInputToUser(userInput)
+        user.password = BCryptPasswordEncoder().encode(user.password)
         return userMapper.userToUserResult(
             userRepository.save(user)
         )
