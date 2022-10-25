@@ -96,6 +96,7 @@ data class ReminderInput(
     var medicine: MedicineDetails? = null
 )
 data class ReminderDetails(
+    var id: Long? = null,
     var createDate: Date? = null, // Date(year: Int, month: Int, day: Int, hour: Int, minute: Int)
     var description: String? = null,
     var user: UserResult? = null,
