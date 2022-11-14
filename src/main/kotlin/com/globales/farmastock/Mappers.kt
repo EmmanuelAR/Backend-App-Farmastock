@@ -93,6 +93,13 @@ interface ReminderMapper{
     fun reminderToReminderDetails(
             reminder: Reminder
     ): ReminderDetails
+
+    //@Mapping(target = "createDate", defaultExpression = "java(new java.util.Date())")
+    @Mapping(target = "createDate", dateFormat = "yyyy-MM-dd")
+    fun reminderInputToReminder(
+        reminderInput: ReminderInput
+    ): Reminder
+
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     fun reminderInputToReminder(dto: ReminderInput, @MappingTarget reminder: Reminder )
 
@@ -100,9 +107,8 @@ interface ReminderMapper{
             reminderList: List<Reminder>,
     ): List<ReminderDetails>
 
-    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
-    fun reminderInputToReminder(
-            reminderInput: ReminderInput,
-    ): Reminder
-
+//    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
+//    fun reminderInputToReminder(
+//            reminderInput: ReminderInput,
+//    ): Reminder
 }
